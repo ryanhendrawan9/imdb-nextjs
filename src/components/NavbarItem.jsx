@@ -2,10 +2,20 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 
 export default function NavbarItem({ title, param }) {
+  return (
+    <Suspense fallback={<span>Loading...</span>}>
+      <NavbarItemContent title={title} param={param} />
+    </Suspense>
+  );
+}
+
+function NavbarItemContent({ title, param }) {
   const searchParams = useSearchParams();
   const genre = searchParams.get("genre");
+
   return (
     <div>
       <Link
