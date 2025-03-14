@@ -1,32 +1,27 @@
-import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import Providers from "./Provider";
+import Providers from "./Providers";
+import Navbar from "@/components/Navbar";
+import SearchBox from "@/components/SearchBox";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "IMDb Clone",
+  title: "IMDb clone",
   description: "This is a movie database clone",
 };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className={inter.className}>
         <Providers>
           <Header />
+          <Navbar />
+          <SearchBox />
+          {children}
         </Providers>
-        {children}
       </body>
     </html>
   );
